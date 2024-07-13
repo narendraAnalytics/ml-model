@@ -47,7 +47,7 @@ columns = [
 ]
 
 # Generate the dataset
-num_records = 500
+num_records = 1080
 data = generate_breast_cancer_data(num_records)
 
 # Convert to DataFrame
