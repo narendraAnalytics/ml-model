@@ -2,11 +2,24 @@ import pandas as pd
 import numpy as np
 import random
 
+# List of Indian states for the location column
+indian_states = [
+    "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chhattisgarh", "Goa",
+    "Gujarat", "Haryana", "Himachal Pradesh", "Jharkhand", "Karnataka", "Kerala",
+    "Madhya Pradesh", "Maharashtra", "Manipur", "Meghalaya", "Mizoram", "Nagaland",
+    "Odisha", "Punjab", "Rajasthan", "Sikkim", "Tamil Nadu", "Telangana", "Tripura",
+    "Uttar Pradesh", "Uttarakhand", "West Bengal"
+]
+
 # Function to generate random data for the dataset
 def generate_breast_cancer_data(num_records):
     data = []
     for i in range(num_records):
         id = i + 1
+        age = random.randint(20, 80)
+        location = random.choice(indian_states)
+        smoking = random.choice([0, 1])  # 0 = No, 1 = Yes
+        alcohol = random.choice([0, 1])  # 0 = No, 1 = Yes
         radius_mean = round(random.uniform(10, 30), 2)
         texture_mean = round(random.uniform(10, 40), 2)
         perimeter_mean = round(random.uniform(50, 200), 2)
@@ -30,20 +43,21 @@ def generate_breast_cancer_data(num_records):
         diagnosis = random.choice([0, 1])
         
         data.append([
-            id, radius_mean, texture_mean, perimeter_mean, area_mean, smoothness_mean, compactness_mean, concavity_mean,
-            concave_points_mean, symmetry_mean, fractal_dimension_mean, radius_worst, texture_worst, perimeter_worst,
-            area_worst, smoothness_worst, compactness_worst, concavity_worst, concave_points_worst, symmetry_worst,
-            fractal_dimension_worst, diagnosis
+            id, age, location, smoking, alcohol, radius_mean, texture_mean, perimeter_mean, area_mean, smoothness_mean, 
+            compactness_mean, concavity_mean, concave_points_mean, symmetry_mean, fractal_dimension_mean, radius_worst, 
+            texture_worst, perimeter_worst, area_worst, smoothness_worst, compactness_worst, concavity_worst, 
+            concave_points_worst, symmetry_worst, fractal_dimension_worst, diagnosis
         ])
     
     return data
 
 # Column names for the dataset
 columns = [
-    'ID', 'Radius (mean)', 'Texture (mean)', 'Perimeter (mean)', 'Area (mean)', 'Smoothness (mean)', 'Compactness (mean)', 
-    'Concavity (mean)', 'Concave points (mean)', 'Symmetry (mean)', 'Fractal dimension (mean)', 'Radius (worst)', 
-    'Texture (worst)', 'Perimeter (worst)', 'Area (worst)', 'Smoothness (worst)', 'Compactness (worst)', 
-    'Concavity (worst)', 'Concave points (worst)', 'Symmetry (worst)', 'Fractal dimension (worst)', 'Diagnosis'
+    'ID', 'Age', 'Location', 'Smoking', 'Alcohol', 'Radius (mean)', 'Texture (mean)', 'Perimeter (mean)', 'Area (mean)', 
+    'Smoothness (mean)', 'Compactness (mean)', 'Concavity (mean)', 'Concave points (mean)', 'Symmetry (mean)', 
+    'Fractal dimension (mean)', 'Radius (worst)', 'Texture (worst)', 'Perimeter (worst)', 'Area (worst)', 
+    'Smoothness (worst)', 'Compactness (worst)', 'Concavity (worst)', 'Concave points (worst)', 'Symmetry (worst)', 
+    'Fractal dimension (worst)', 'Diagnosis'
 ]
 
 # Generate the dataset
